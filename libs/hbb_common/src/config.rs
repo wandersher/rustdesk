@@ -941,6 +941,7 @@ impl Config {
         let mut config = Config::load_::<Config>("");
         if config.key_pair.0.is_empty() {
             log::info!("Generated new keypair for id: {}", config.id);
+            println!("Generated new keypair for id: {}", config.id);
             let (pk, sk) = sign::gen_keypair();
             let key_pair = (sk.0.to_vec(), pk.0.into());
             config.key_pair = key_pair.clone();
@@ -1042,6 +1043,7 @@ impl Config {
         let new_id = rng.gen_range(1_000_000_000..2_000_000_000).to_string();
         Config::set_id(&new_id);
         log::info!("id updated from {} to {}", id, new_id);
+        println!("id updated from {} to {}", id,  new_id);
     }
 
     pub fn set_permanent_password(password: &str) {
