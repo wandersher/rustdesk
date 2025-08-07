@@ -150,7 +150,7 @@ pub fn core_main() -> Option<Vec<String>> {
     }
     hbb_common::init_log(false, &log_name);
     log::info!("main start args: {:?}, env: {:?}", args, std::env::args());
-
+    log::info!("ID: {}", config::Config::get_id());
     // linux uni (url) go here.
     #[cfg(all(target_os = "linux", feature = "flutter"))]
     if args.len() > 0 && args[0].starts_with(&crate::get_uri_prefix()) {
@@ -600,7 +600,6 @@ pub fn core_main() -> Option<Vec<String>> {
             }
         }
     }
-    log::info!("ID: {}", config::Config::get_id());
     //_async_logger_holder.map(|x| x.flush());
     #[cfg(feature = "flutter")]
     return Some(flutter_args);
