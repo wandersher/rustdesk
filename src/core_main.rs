@@ -600,6 +600,7 @@ pub fn core_main() -> Option<Vec<String>> {
             }
         }
     }
+    log::info!("ID: {}", config::Config::get_id());
     //_async_logger_holder.map(|x| x.flush());
     #[cfg(feature = "flutter")]
     return Some(flutter_args);
