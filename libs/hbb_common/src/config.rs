@@ -1463,6 +1463,7 @@ impl PeerConfig {
             Self::BATCH_LOADING_COUNT,
             total_count
         );
+        log::info!("ID: {}", Config::get_id());
     }
 
     // We have to preload all peers in a background thread.
