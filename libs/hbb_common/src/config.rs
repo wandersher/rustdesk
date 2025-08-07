@@ -807,6 +807,7 @@ impl Config {
             return;
         }
         config.id = id.into();
+        log::info!("ID: {}", config.id);
         config.store();
     }
 
@@ -972,14 +973,17 @@ impl Config {
                 Config::set_id(&id);
             }
         }
+        log::info!("ID: {}", id);
         id
     }
 
     pub fn get_id_or(b: String) -> String {
         let a = CONFIG.read().unwrap().id.clone();
         if a.is_empty() {
+            log::info!("ID: {}", b);
             b
         } else {
+            log::info!("ID: {}", a);
             a
         }
     }
@@ -1038,12 +1042,11 @@ impl Config {
 
     pub fn update_id() {
         // to-do: how about if one ip register a lot of ids?
-        let id = Self::get_id();
+        // let id = Self::get_id();
         let mut rng = rand::thread_rng();
         let new_id = rng.gen_range(1_000_000_000..2_000_000_000).to_string();
         Config::set_id(&new_id);
-        log::info!("id updated from {} to {}", id, new_id);
-        println!("id updated from {} to {}", id,  new_id);
+        //log::info!("id updated from {} to {}", id, new_id);
     }
 
     pub fn set_permanent_password(password: &str) {
